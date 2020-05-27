@@ -2,13 +2,16 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3009",
+  "proxy": "http://localhost:9009",
   "dependencies": {
+    "@moneybutton/api-client": "^0.38.1",
+    "@moneybutton/config": "^0.38.1",
     "axios": "^0.17.1",
     "cors": "^2.8.4",
     "draft-js": "^0.10.5",
     "md5": "^2.2.1",
-    "react": "^16.3.2",
+    "moneybutton": "0.0.1",
+    "react": "^16.13.1",
     "react-dom": "^16.3.2",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
@@ -16,7 +19,7 @@
     "sha256": "^0.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=9008 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

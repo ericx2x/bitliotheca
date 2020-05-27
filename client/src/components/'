@@ -1,0 +1,54 @@
+import React, { Component } from 'react';
+import axios from 'axios';
+const { MoneyButtonClient } = require('@moneybutton/api-client')
+//const client = new MoneyButtonClient("9becf316ca7bad801f6d30b563e01dd4", "70abe5cd2fff168bba3b6b4e52ffdd11")
+const client = new MoneyButtonClient("115c92e4b0101ca3a7404b472053c8b2")
+const refreshToken = client.getRefreshToken();
+
+axios.defaults.withCredentials = true;
+
+class Homepage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+    };
+  }
+
+  handleMBRequestAuthorization = e => {
+    e.preventDefault();
+    client.requestAuthorization(
+      'auth.user_identity:read',
+      'http://localhost:9008/oauth-response-web'
+    )
+    client.handleAuthorizationResponse().then(() => {
+        client.getIdentity();
+      console.log('idi', client.getIdentity())
+
+    });
+
+
+    //TODO: go from here below
+    //client.handleAuthorizationResponse().then(() => {
+        //client.getIdentity().then(res => {
+          //client.getUserProfile(res.id).then(res => {
+  };
+
+  render(){
+    //client.setRefreshToken(refreshToken)
+    //await client.logInAsApp()
+
+
+    let r = Math.random().toString(36).substring(7);
+
+    return (
+      <div className="homepage">
+        Homepage <br />
+        {/*<a href={`https://www.moneybutton.com/oauth/v1/authorize?response_type=code&client_id=9becf316ca7bad801f6d30b563e01dd4&redirect_uri=http://localhost:9008/oauth-response-web&scope=auth.user_identity:read&state=${r}`}>oAuth</a><br />*/}
+
+        <a href='' onClick={this.handleMBRequestAuthorization}>oAuth</a>
+      </div>
+    );
+  }
+}
+
+export default Homepage;

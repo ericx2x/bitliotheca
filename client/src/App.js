@@ -7,7 +7,8 @@ import {
   NavLink
 } from 'react-router-dom';
 
-import Notes from './components/notes';
+//import Notes from './components/notes';
+import Homepage from './components/homepage';
 
 import axios from 'axios';
 import './App.css';
@@ -22,7 +23,7 @@ class App extends Component {
       notex2x: '',
       notes: [],
       dates: [], //need to implelment still
-      baseURL: "", //http://ericnote.us:3009  //or empty quote
+      baseURL: "", //http://ericnote.us:9009  //or empty quote
       passwordShown: true,
       passEntered: false,
       pass: "",
@@ -58,11 +59,19 @@ class App extends Component {
 
   render() {
       
-    const NotesPage = (props) => {
+    //const NotesPage = (props) => {
+      //return (
+        //<Notes
+          //notex2x={this.state.notex2x}
+          //baseURL={this.state.baseURL}
+          //{...props}
+        ///>
+      //);
+    //};
+
+    const HomePage = (props) => {
       return (
-        <Notes
-          notex2x={this.state.notex2x}
-          baseURL={this.state.baseURL}
+        <Homepage
           {...props}
         />
       );
@@ -72,7 +81,6 @@ class App extends Component {
     return (
       <div id="layout" className={`${this.state.activeMenu}`}>
         <div id="main">
-          
           <div className="content">
             <Router>
               <div>
@@ -86,7 +94,7 @@ class App extends Component {
                       activeClassName="pure-menu-selected"
                       className="pure-menu-heading"
                       to="/">
-                      Eric's Notes
+                      Bitliotheca
                     </NavLink>
                     <ul className="pure-menu-list">
                         
@@ -95,7 +103,6 @@ class App extends Component {
                          <a
                           className="pure-menu-link" href={`/login`}>Login</a>
                        </li>
-                       {/* {console.log(this.state.notes)} */}
                       {this.state.notes.map((note,index) =>
                        <li className="pure-menu-item" key={index}>
                          <a
@@ -106,7 +113,7 @@ class App extends Component {
                   </div>
                 </div>
                 <Switch>
-                  <Route path={"/v/:id"} component={NotesPage} />
+                  <Route path={"/"} component={HomePage} />
                   <Redirect from='*' to='/' />
                 </Switch>
               </div>
